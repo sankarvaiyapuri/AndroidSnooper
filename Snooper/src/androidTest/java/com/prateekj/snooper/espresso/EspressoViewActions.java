@@ -14,4 +14,8 @@ public class EspressoViewActions {
   public static ViewAction waitFor(final Matcher<View> viewMatcher, int timeout) {
     return new WaitForViewAction(viewMatcher, timeout);
   }
+
+  public static ViewAction scrollTo() {
+    return new NestedScrollAction();
+  }
 }

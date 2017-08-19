@@ -44,6 +44,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.prateekj.snooper.espresso.EspressoViewActions.scrollTo;
 import static com.prateekj.snooper.networksnooper.activity.HttpCallActivity.HTTP_CALL_ID;
 import static com.prateekj.snooper.utils.TestUtilities.getDate;
 import static com.prateekj.snooper.utils.TestUtilities.readFrom;
@@ -102,13 +103,13 @@ public class HttpCallActivityTest {
     onView(withText("OK")).check(matches(isDisplayed()));
     onView(withText("06/02/2017 11:22:33")).check(matches(isDisplayed()));
 
-    onView(withText(R.string.response_headers)).perform(click());
+    onView(withText(R.string.response_headers)).perform(scrollTo(), click());
     verifyResponseHeader("content-type", "application/json");
     verifyResponseHeader("cache-control", "no-cache");
     verifyResponseHeader("content-disposition", "attachment");
     verifyResponseHeader("date", "Sun, 02 Apr 2017 08:54:39 GMT");
 
-    onView(withText(R.string.request_headers)).perform(click());
+    onView(withText(R.string.request_headers)).perform(scrollTo(), click());
     verifyRequestHeader("content-type", "application/json");
     verifyRequestHeader("content-length", "403");
     verifyRequestHeader("accept-language", "en-US,en;q=0.8,hi;q=0.6");
@@ -148,7 +149,7 @@ public class HttpCallActivityTest {
     onView(withText("FAILED")).check(matches(isDisplayed()));
     onView(withText("06/02/2017 11:22:33")).check(matches(isDisplayed()));
 
-    onView(withText(R.string.request_headers)).perform(click());
+    onView(withText(R.string.request_headers)).perform(scrollTo(), click());
     verifyRequestHeader("content-type", "application/json");
     verifyRequestHeader("content-length", "403");
     verifyRequestHeader("accept-language", "en-US,en;q=0.8,hi;q=0.6");
@@ -217,21 +218,21 @@ public class HttpCallActivityTest {
   @NonNull
   private Map<String, List<String>> getResponseHeaders() {
     return ImmutableMap.of(
-        "content-type", singletonList("application/json"),
-        "cache-control", singletonList("no-cache"),
-        "content-disposition", singletonList("attachment"),
-        "date", singletonList("Sun, 02 Apr 2017 08:54:39 GMT")
-      );
+      "content-type", singletonList("application/json"),
+      "cache-control", singletonList("no-cache"),
+      "content-disposition", singletonList("attachment"),
+      "date", singletonList("Sun, 02 Apr 2017 08:54:39 GMT")
+    );
   }
 
   @NonNull
   private Map<String, List<String>> getRequestHeaders() {
     return ImmutableMap.of(
-        "content-type", singletonList("application/json"),
-        "content-length", singletonList("403"),
-        "accept-language", asList("en-US,en", "q=0.8,hi", "q=0.6"),
-        ":scheme", singletonList("https")
-      );
+      "content-type", singletonList("application/json"),
+      "content-length", singletonList("403"),
+      "accept-language", asList("en-US,en", "q=0.8,hi", "q=0.6"),
+      ":scheme", singletonList("https")
+    );
   }
 
   private void verifyClickActionOnShareMenu() {
