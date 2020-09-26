@@ -3,9 +3,7 @@ package com.prateekj.snooper.networksnooper.presenter
 import com.prateekj.snooper.infra.BackgroundTask
 import com.prateekj.snooper.infra.BackgroundTaskExecutor
 import com.prateekj.snooper.networksnooper.activity.HttpCallTab
-import com.prateekj.snooper.networksnooper.activity.HttpCallTab.HEADERS
-import com.prateekj.snooper.networksnooper.activity.HttpCallTab.REQUEST
-import com.prateekj.snooper.networksnooper.activity.HttpCallTab.RESPONSE
+import com.prateekj.snooper.networksnooper.activity.HttpCallTab.*
 import com.prateekj.snooper.networksnooper.helper.DataCopyHelper
 import com.prateekj.snooper.networksnooper.model.HttpCallRecord
 import com.prateekj.snooper.networksnooper.views.HttpCallView
@@ -25,7 +23,7 @@ class HttpCallPresenter(
   private val logFileName: String
     get() {
       val df = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", US)
-      return format("%s.txt", df.format(httpCallRecord.date))
+      return format("%s.txt", df.format(httpCallRecord.date!!))
     }
 
   fun copyHttpCallBody(httpCallTab: HttpCallTab) {
@@ -41,9 +39,9 @@ class HttpCallPresenter(
         return fileUtil.createLogFile(completeHttpCallData, logFileName)
       }
 
-      override fun onResult(filePath: String) {
-        if (filePath.isNotEmpty()) {
-          view.shareData(filePath)
+      override fun onResult(result: String) {
+        if (result.isNotEmpty()) {
+          view.shareData(result)
         }
       }
     })

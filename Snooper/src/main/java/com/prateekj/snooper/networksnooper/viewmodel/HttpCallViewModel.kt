@@ -26,7 +26,7 @@ class HttpCallViewModel(private val httpCall: HttpCallRecord) {
   val timeStamp: String
     get() {
       val df = SimpleDateFormat(TIMESTAMP_FORMAT, US)
-      return df.format(httpCall.date)
+      return df.format(httpCall.date!!)
     }
 
   val responseInfoVisibility: Int = if (httpCall.hasError()) GONE else VISIBLE

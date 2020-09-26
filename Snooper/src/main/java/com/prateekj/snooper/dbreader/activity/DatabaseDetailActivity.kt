@@ -26,8 +26,8 @@ class DatabaseDetailActivity : SnooperBaseActivity(), DbViewCallback, TableEvent
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_db_view)
     initViews()
-    dbPath = intent.getStringExtra(DatabaseListActivity.DB_PATH)
-    val dbName = intent.getStringExtra(DB_NAME)
+    dbPath = intent.getStringExtra(DatabaseListActivity.DB_PATH)!!
+    val dbName = intent.getStringExtra(DB_NAME)!!
     val backgroundTaskExecutor = BackgroundTaskExecutor(this)
     databaseReader = DatabaseReader(this, backgroundTaskExecutor, DatabaseDataReader())
     databaseReader.fetchDbContent(this, dbPath, dbName)

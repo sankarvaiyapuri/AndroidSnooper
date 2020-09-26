@@ -9,6 +9,7 @@ class SnooperShakeListener(private val shakeAction: SnooperShakeAction) : OnShak
       isSnooperFlowStarted = true
       return
     }
+
     this.shakeAction.endSnooperFlow()
     isSnooperFlowStarted = false
   }

@@ -7,7 +7,7 @@ import android.hardware.SensorManager
 import kotlin.math.sqrt
 
 class ShakeDetector(private val onShakeListener: OnShakeListener) : SensorEventListener {
-  private var mShakeTimestamp: Long = 0
+  private var shakeTimestamp: Long = 0
 
   override fun onSensorChanged(event: SensorEvent) {
     val x = event.values[0]
@@ -24,17 +24,16 @@ class ShakeDetector(private val onShakeListener: OnShakeListener) : SensorEventL
     if (gForce > SHAKE_THRESHOLD_GRAVITY) {
       val now = System.currentTimeMillis()
       // ignore shake events too close to each other (500ms)
-      if (mShakeTimestamp + SHAKE_SLOP_TIME_MS > now) {
+      if (shakeTimestamp + SHAKE_SLOP_TIME_MS > now) {
         return
       }
-      mShakeTimestamp = now
-      this.onShakeListener.onShake()
+      shakeTimestamp = now
+
+      onShakeListener.onShake()
     }
   }
 
-  override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
-
-  }
+  override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
 
   companion object {
     private const val SHAKE_THRESHOLD_GRAVITY = 2.7f

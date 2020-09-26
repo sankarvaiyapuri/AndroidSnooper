@@ -6,14 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.appcompat.app.AppCompatActivity
-import android.view.MenuItem
-
-import com.prateekj.snooper.infra.AppPermissionChecker
-
 import com.prateekj.snooper.AndroidSnooper.Companion.ACTION_END_SNOOPER_FLOW
+import com.prateekj.snooper.infra.AppPermissionChecker
 
 abstract class SnooperBaseActivity : AppCompatActivity() {
 
@@ -48,7 +46,7 @@ abstract class SnooperBaseActivity : AppCompatActivity() {
   override fun onRequestPermissionsResult(
     requestCode: Int,
     permissions: Array<String>,
-    grantResults: IntArray
+    grantResults: IntArray,
   ) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     appPermissionChecker.handlePermissionResult(requestCode, permissions, grantResults)

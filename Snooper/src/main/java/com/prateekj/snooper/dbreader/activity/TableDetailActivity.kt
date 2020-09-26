@@ -25,11 +25,11 @@ class TableDetailActivity : SnooperBaseActivity(), TableViewCallback {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_table_view)
     initViews()
-    val tableName = intent.getStringExtra(TABLE_NAME)
-    val dbPath = intent.getStringExtra(DatabaseDetailActivity.DB_PATH)
+    val tableName = intent.getStringExtra(TABLE_NAME)!!
+    val dbPath = intent.getStringExtra(DatabaseDetailActivity.DB_PATH)!!
     val backgroundTaskExecutor = BackgroundTaskExecutor(this)
     databaseReader = DatabaseReader(this, backgroundTaskExecutor, DatabaseDataReader())
-    databaseReader.fetchTableContent(this, dbPath, tableName!!)
+    databaseReader.fetchTableContent(this, dbPath, tableName)
   }
 
   override fun onTableFetchStarted() {

@@ -5,10 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.ACTION_SEND
-import android.content.Intent.EXTRA_STREAM
-import android.content.Intent.EXTRA_SUBJECT
-import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
+import android.content.Intent.*
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -103,7 +100,7 @@ class HttpCallActivity : SnooperBaseActivity(), HttpCallView {
   override fun copyToClipboard(data: String) {
     val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clip = ClipData.newPlainText("Copied", data)
-    clipboard.primaryClip = clip
+    clipboard.setPrimaryClip(clip)
   }
 
   override fun shareData(logFilePath: String) {

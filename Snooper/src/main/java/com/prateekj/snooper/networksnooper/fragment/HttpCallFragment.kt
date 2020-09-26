@@ -5,16 +5,12 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.BackgroundColorSpan
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
+import android.view.*
 import android.view.View.GONE
-import android.view.ViewGroup
 import android.widget.TextView.BufferType.SPANNABLE
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
-import androidx.core.view.MenuItemCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import androidx.fragment.app.Fragment
@@ -73,7 +69,7 @@ class HttpCallFragment : Fragment(), HttpCallBodyView, OnQueryTextListener, OnSc
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
     val searchMenu = menu.findItem(R.id.search_menu)
     searchMenu.isVisible = true
-    (MenuItemCompat.getActionView(searchMenu) as SearchView).setOnQueryTextListener(this)
+    (searchMenu.actionView as SearchView).setOnQueryTextListener(this)
     super.onCreateOptionsMenu(menu, inflater)
   }
 
@@ -158,7 +154,7 @@ class HttpCallFragment : Fragment(), HttpCallBodyView, OnQueryTextListener, OnSc
     return Runnable {
       for (bound in boundsCurrentSet) {
         text.setSpan(
-          BackgroundColorSpan(resources.getColor(R.color.snooper_text_highlight_color)),
+          BackgroundColorSpan(ContextCompat.getColor(requireContext(), R.color.snooper_text_highlight_color)),
           bound.left,
           bound.right,
           Spanned.SPAN_EXCLUSIVE_EXCLUSIVE

@@ -13,7 +13,7 @@ class AppPermissionChecker(private val activity: Activity) {
   fun handlePermission(
     permission: String,
     permissionRequestCode: Int,
-    callBack: PermissionRequestCallBack
+    callBack: PermissionRequestCallBack,
   ) {
     this.permissionRequestCode = permissionRequestCode
     this.callBack = callBack
@@ -36,11 +36,7 @@ class AppPermissionChecker(private val activity: Activity) {
     }
   }
 
-  fun handlePermissionResult(
-    requestCode: Int,
-    permissions: Array<String>,
-    grantResults: IntArray
-  ) {
+  fun handlePermissionResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
     if (requestCode == permissionRequestCode && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
       callBack!!.permissionGranted()
     } else {

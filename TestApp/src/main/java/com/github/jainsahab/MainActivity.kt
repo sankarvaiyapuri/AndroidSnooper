@@ -10,18 +10,13 @@ import com.prateekj.snooper.AndroidSnooper
 import com.prateekj.snooper.okhttp.SnooperInterceptor
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Interceptor
+import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONObject
 import java.io.IOException
-import java.util.Date
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,9 +24,9 @@ class MainActivity : AppCompatActivity() {
   private val requestBody: JSONObject
     get() {
       val postdata = JSONObject()
-        postdata.put("name", "test" + Date().time)
-        postdata.put("job", "Investment manager")
-        postdata.put("age", "23")
+      postdata.put("name", "test" + Date().time)
+      postdata.put("job", "Investment manager")
+      postdata.put("age", "23")
       return postdata
     }
 

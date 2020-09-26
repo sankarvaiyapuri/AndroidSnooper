@@ -5,7 +5,7 @@ import android.util.Log
 object Logger {
   private const val SNOOPER_DEBUGGER_TAG = "AndroidSnooper"
 
-  fun d(tag: String, message: String?) {
+  fun d(tag: String, message: String) {
     Log.d(SNOOPER_DEBUGGER_TAG + tag, message)
   }
 
@@ -13,7 +13,7 @@ object Logger {
     Log.e(SNOOPER_DEBUGGER_TAG + tag, message, exception)
   }
 
-  fun e(tag: String, message: String?) {
+  fun e(tag: String, message: String) {
     Log.e(SNOOPER_DEBUGGER_TAG + tag, message)
   }
 }

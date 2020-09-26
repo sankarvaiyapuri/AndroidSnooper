@@ -12,7 +12,7 @@ class BackgroundTaskExecutor(private val activity: Activity) {
     }
   }
 
-  fun <E> sendResult(result: E, backgroundTask: BackgroundTask<E>) {
+  private fun <E> sendResult(result: E, backgroundTask: BackgroundTask<E>) {
     this.activity.runOnUiThread { backgroundTask.onResult(result) }
   }
 }
